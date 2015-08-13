@@ -26,7 +26,7 @@ echo "===> $0 - Create Fakeroot FS Layout"
 TMP_DIR=$(mktemp -d)
 PKG_DIR="${TMP_DIR}/${PKG_NAME}_${ANSIBLE_VERSION}-${PKG_MAINT}_${PKG_ARCH}"
 mkdir -pv ${PKG_DIR}/${INSTALL_DIR}
-cp -r ${INSTALL_DIR} ${PKG_DIR}/
+cp -vr ${INSTALL_DIR}/* ${PKG_DIR}/${INSTALL_DIR}/
 
 
 ## Make Debian files
@@ -38,12 +38,12 @@ find . -type f ! -path './DEBIAN/*' -printf '%P\0' | sort -z | xargs -r0 md5sum 
 
 cat >DEBIAN/control <<EOF
 Package: ${PKG_NAME}
-Version: ${ANSIBLE_VERSION}
+Version: ${ANSIBLE_VERSION}-${PKG_MAINT}
 Section: admin
 Priority: optional
 Architecture: ${PKG_ARCH}
 Maintainer: ${MAINTAINER}
-Description: Ansible ${ANSIBLE_VERSION} with embedded Python binary (${PYTHON_VERSION})and libraries.
+Description: Ansible ${ANSIBLE_VERSION} with embedded Python binary (${PYTHON_VERSION}) and libraries.
   No dependencies, nothing more to say :)
   .
 EOF
