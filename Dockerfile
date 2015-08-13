@@ -1,3 +1,5 @@
+## Based on https://github.com/docker-library/python/2.7/slim/Dockerfile
+##
 FROM google/debian:wheezy
 
 
@@ -92,6 +94,7 @@ RUN echo "===> Ansible: Install Ansible" \
   prettytable \
   python-consul
 
+COPY plugins_1.9/ ${INSTALL_DIR}/share/ansible_plugins/
 
 
 CMD ["/bin/bash"]
