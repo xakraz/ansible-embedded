@@ -1,4 +1,4 @@
-FROM ansible-embedded:latest
+FROM ansible-embedded-base:wheezy
 MAINTAINER Xavier Krantz <xakraz@gmail.com>
 
 

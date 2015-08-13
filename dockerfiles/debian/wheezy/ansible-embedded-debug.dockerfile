@@ -1,4 +1,4 @@
-FROM ansible-embedded:latest
+FROM ansible-embedded-base:wheezy
 
 RUN apt-get update -qq \
  && apt-get install -y openssh-client \
