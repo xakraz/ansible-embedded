@@ -1,0 +1,19 @@
+## Docker Ignore files
+## --
+##
+## List of files to not send to the docker daemon
+## during image build time.
+
+## Vagrant
+.vagrant
+Vagrantfile
+
+## Hidden files
+.git
+
+## CI Config Files
+circle.yml
+
+
+
+## Project files
