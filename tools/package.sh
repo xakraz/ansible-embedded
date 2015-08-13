@@ -7,8 +7,9 @@ set -u
 
 ## Vars
 ## --
+DISTRO="$(cat /etc/os-release | grep 'VERSION=' |awk -F= {' print $2'} |sed s/\"//g |sed s/[0-9]//g | sed s/\)$//g |sed s/\ \(//g)"
+
 PKG_NAME='ansible-embedded'
-PKG_MAINT='viadeo1'
 PKG_ARCH='amd64'
 MAINTAINER='Xavier Krantz <xakraz@gmail.com>'
 CONTAINER_SHARED_DIR='/media'
@@ -19,6 +20,12 @@ CONTAINER_SHARED_DIR='/media'
 # - PYTHON_VERSION
 # - INSTALL_DIR
 
+# Bad workaround between squeeze / Wheezy
+if [[ -z "${DISTRO}" ]]; then
+  DISTRO="squeeze";
+fi
+PKG_MAINT="${DISTRO}1"
+
 
 ## Create fakeroot layout
 ## --
@@ -26,7 +33,7 @@ echo "===> $0 - Create Fakeroot FS Layout"
 TMP_DIR=$(mktemp -d)
 PKG_DIR="${TMP_DIR}/${PKG_NAME}_${ANSIBLE_VERSION}-${PKG_MAINT}_${PKG_ARCH}"
 mkdir -pv ${PKG_DIR}/${INSTALL_DIR}
-cp -vr ${INSTALL_DIR}/* ${PKG_DIR}/${INSTALL_DIR}/
+cp -r ${INSTALL_DIR}/* ${PKG_DIR}/${INSTALL_DIR}/
 
 
 ## Make Debian files
