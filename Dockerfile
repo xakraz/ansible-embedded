@@ -85,5 +85,13 @@ RUN echo "===> Python: FINAL: Clean the mess" \
 
 ## 3 - Install Ansible
 ## --
-#RUN echo "===> Ansible: Install Ansible" \
-# && pip install ansible==${ANSIBLE_VERSION}
+RUN echo "===> Ansible: Install Ansible" \
+ && pip install \
+  ansible==${ANSIBLE_VERSION} \
+  httplib2 \
+  prettytable \
+  python-consul
+
+
+
+CMD ["/bin/bash"]
