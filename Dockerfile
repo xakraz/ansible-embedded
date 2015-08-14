@@ -1,1 +1,0 @@
-dockerfiles/ansible-embedded-base.dockefile
