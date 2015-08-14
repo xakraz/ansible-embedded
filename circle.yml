@@ -21,12 +21,12 @@ dependencies:
 
   post:
   ## Build the image (Will use published image from registry later)
-  - docker build --rm -t ansible-embedded-base:squeeze --file=dockerfiles/debian/squeeze/ansible-embedded-base.dockerfile .
-  - docker build --rm -t ansible-embedded-deb:squeeze  --file=dockerfiles/debian/squeeze/ansible-embedded-deb.dockerfile .
-  - docker build --rm -t ansible-embedded-base:wheezy  --file=dockerfiles/debian/wheezy/ansible-embedded-base.dockerfile .
-  - docker build --rm -t ansible-embedded-deb:wheezy   --file=dockerfiles/debian/wheezy/ansible-embedded-deb.dockerfile .
-  - docker run --rm --volume=$(pwd):/media/ ansible-embedded-deb:squeeze
-  - docker run --rm --volume=$(pwd):/media/ ansible-embedded-deb:wheezy
+  - docker build -t ansible-embedded-base:squeeze --file=dockerfiles/debian/squeeze/ansible-embedded-base.dockerfile .
+  - docker build -t ansible-embedded-deb:squeeze  --file=dockerfiles/debian/squeeze/ansible-embedded-deb.dockerfile .
+  - docker build -t ansible-embedded-base:wheezy  --file=dockerfiles/debian/wheezy/ansible-embedded-base.dockerfile .
+  - docker build -t ansible-embedded-deb:wheezy   --file=dockerfiles/debian/wheezy/ansible-embedded-deb.dockerfile .
+  - docker run --volume=$(pwd):/media/ ansible-embedded-deb:squeeze
+  - docker run --volume=$(pwd):/media/ ansible-embedded-deb:wheezy
 
 
 ## Tests config
@@ -35,9 +35,9 @@ test:
   override:
 
 
-#deployment:
-#  production:
-#    branch: master
-#    commands:
-#      - package_cloud push viadeo_ops/<REPO>/debian/wheezy  ansible-embedded_*wheezy.deb
-#      - package_cloud push viadeo_ops/<REPO>/debian/squeeze ansible-embedded_*squeeze.deb
+deployment:
+  production:
+    branch: master
+    commands:
+      - package_cloud push viadeo_ops/software/debian/wheezy  ansible-embedded_*~wheezy.deb
+      - package_cloud push viadeo_ops/software/debian/squeeze ansible-embedded_*~squeeze.deb
