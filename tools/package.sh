@@ -24,7 +24,7 @@ CONTAINER_SHARED_DIR='/media'
 if [[ -z "${DISTRO}" ]]; then
   DISTRO="squeeze";
 fi
-PKG_MAINT="${DISTRO}1"
+PKG_MAINT="1~${DISTRO}"
 
 
 ## Create fakeroot layout
