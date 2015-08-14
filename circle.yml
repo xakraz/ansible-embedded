@@ -39,5 +39,5 @@ deployment:
   production:
     branch: master
     commands:
-      - package_cloud push viadeo_ops/software/debian/wheezy  ansible-embedded_*~wheezy.deb
-      - package_cloud push viadeo_ops/software/debian/squeeze ansible-embedded_*~squeeze.deb
+      - package_cloud push viadeo_ops/software/debian/wheezy  ansible-embedded_*~wheezy_amd64.deb
+      - package_cloud push viadeo_ops/software/debian/squeeze ansible-embedded_*~squeeze_amd64.deb
